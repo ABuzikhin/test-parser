@@ -25,6 +25,9 @@ restart: kill start ## restart project
 enter: ## install vendor packages
 	$(WEB) bash
 
+tests:
+	$(WEB) bin/phpunit --testdox
+
 composer: ## install vendor packages
 	$(COMPOSER) install
 
@@ -39,7 +42,7 @@ nd: ## run command without docker (for example `make nd some-command`)
 	$(eval DOCKER := \#)
 	$(eval WEB := )
 
-.PHONY: start stop kill restart composer db nd
+.PHONY: start stop kill restart composer db nd tests
 
 #
 # HELP

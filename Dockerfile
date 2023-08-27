@@ -15,8 +15,16 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     nodejs \
-    npm
-RUN docker-php-ext-install zip mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
+    npm \
+    wget \
+    gnupg \
+    chromium
+
+    # for backward compatibility, make both path be symlinked to the binary.
+RUN ln -s /usr/bin/chromium /usr/bin/google-chrome-unstable
+RUN ln -s /usr/bin/chromium /usr/bin/google-chrome
+
+RUN docker-php-ext-install zip mysqli pdo pdo_mysql sockets && docker-php-ext-enable pdo_mysql sockets
 
 RUN npm install --global yarn
 

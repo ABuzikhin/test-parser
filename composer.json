@@ -7,15 +7,22 @@
         "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-sockets": "*",
+        "chrome-php/chrome": "^1.9",
         "doctrine/doctrine-bundle": "^2.10",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.16",
+        "jms/serializer-bundle": "^5.3",
+        "knplabs/knp-gaufrette-bundle": "^0.8.0",
+        "psr/log": "^3.0",
         "sensio/framework-extra-bundle": "^6.2",
         "symfony/console": "6.3.*",
+        "symfony/dom-crawler": "6.3.*",
         "symfony/dotenv": "6.3.*",
         "symfony/flex": "^2",
         "symfony/form": "6.3.*",
         "symfony/framework-bundle": "6.3.*",
+        "symfony/process": "6.3.*",
         "symfony/runtime": "6.3.*",
         "symfony/security-csrf": "6.3.*",
         "symfony/twig-bundle": "6.3.*",
@@ -73,6 +80,12 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "symfony/maker-bundle": "^1.50"
+        "phpunit/phpunit": "^9.5",
+        "symfony/browser-kit": "6.3.*",
+        "symfony/css-selector": "6.3.*",
+        "symfony/maker-bundle": "^1.50",
+        "symfony/phpunit-bridge": "^6.3",
+        "symfony/stopwatch": "6.3.*",
+        "symfony/web-profiler-bundle": "6.3.*"
     }
 }

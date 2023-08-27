@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,14 @@ class Product
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
+
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ParsedUrl::class, cascade: ['persist'], orphanRemoval: true)]
+    private Collection $parsedUrls;
+
+    public function __construct()
+    {
+        $this->parsedUrls = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +85,36 @@ class Product
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ParsedUrl>
+     */
+    public function getParsedUrls(): Collection
+    {
+        return $this->parsedUrls;
+    }
+
+    public function addParsedUrl(ParsedUrl $parsedUrl): static
+    {
+        if (!$this->parsedUrls->contains($parsedUrl)) {
+            $this->parsedUrls->add($parsedUrl);
+            $parsedUrl->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParsedUrl(ParsedUrl $parsedUrl): static
+    {
+        if ($this->parsedUrls->removeElement($parsedUrl)) {
+            // set the owning side to null (unless already changed)
+            if ($parsedUrl->getProduct() === $this) {
+                $parsedUrl->setProduct(null);
+            }
+        }
 
         return $this;
     }

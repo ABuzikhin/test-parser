@@ -30,6 +30,8 @@ services:
         build:
             context: .
         working_dir: /var/www/app/
+        environment:
+            PHP_IDE_CONFIG: "serverName=Docker"
         volumes:
             - './:/var/www/app/'
             - './.docker/php_dev.ini:/usr/local/etc/php/conf.d/xdebug.ini' #comment it if you do not need debug

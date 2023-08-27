@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Urls List{% endblock %}
+
+{% block body %}
+    <h1>Urls List</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>URL</th>
+            <th>Status</th>
+            <th>Time Added</th>
+            <th>Error</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for url in urls %}
+            <tr>
+                <td>{{ url.url }}</td>
+                <td>{{ url.status.name }}</td>
+                <td>{{ url.dateTime|date('Y-m-d H:i:s') }}</td>
+                <td>{{ url.lastError|default('-') }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-outline-info" href="{{ path('app_parse_product') }}">Parse new URL</a>
+    <a class="btn btn-outline-success" href="{{ path('app_parse_product_list') }}">Reload</a>
+    <a class="btn btn-outline-info" href="{{ path('app_product_index') }}">Products list</a>
+{% endblock %}

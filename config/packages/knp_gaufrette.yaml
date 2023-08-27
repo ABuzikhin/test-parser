@@ -1,0 +1,11 @@
+knp_gaufrette:
+    adapters:
+        productFolder:
+            local:
+                directory: /var/www/app/public/build/product-images
+                create: true
+    filesystems:
+        productFs:
+            adapter:    productFolder
+            alias:      product-filesystem
+    stream_wrapper: ~

@@ -21,7 +21,13 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ product.image }}</td>
+                <td>
+                    {% if product.image %}
+                        <a href="/build/product-images/{{ product.image }}" target="_blank">{{ product.image }}</a>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Description</th>
@@ -30,9 +36,10 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_product_index') }}">back to list</a>
+    <a class="btn btn-info" href="{{ path('app_product_index') }}">back to list</a>
 
-    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+    <a class="btn btn-outline-info" href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+    {% set productId = product.id %}
 
     {{ include('product/_delete_form.html.twig') }}
 {% endblock %}

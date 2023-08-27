@@ -2,19 +2,19 @@
 
 namespace App\Form;
 
-use App\Entity\Product;
+use App\Dto\ParsedProductDto;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProductType extends AbstractType
+class ParsedProductDtoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title')
             ->add('price')
-            ->add('image')
+            ->add('imageUrl')
             ->add('description')
         ;
     }
@@ -22,7 +22,7 @@ class ProductType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Product::class,
+            'data_class' => ParsedProductDto::class,
         ]);
     }
 }

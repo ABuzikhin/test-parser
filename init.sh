@@ -1,6 +1,8 @@
 #!/bin/bash -ex
 
 composer install --no-interaction --no-scripts
+yarn install
+yarn dev
 php bin/console assets:install --no-interaction
 php bin/console cache:warmup --no-interaction --no-optional-warmers
 
